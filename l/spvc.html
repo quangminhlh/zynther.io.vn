@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chờ Chuyển Hướng...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+        }
+        .ad-container {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        let countdown = 5; // Số giây chờ trước khi chuyển hướng
+        let targetURL = "https://example.com"; // Link đích
+
+        function updateCountdown() {
+            if (countdown > 0) {
+                document.getElementById("countdown").innerText = countdown;
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                window.location.href = targetURL;
+            }
+        }
+
+        window.onload = updateCountdown;
+    </script>
+</head>
+<body>
+    <h2>Vui lòng chờ <span id="countdown">5</span> giây...</h2>
+    <div class="ad-container">
+        <h3>Quảng cáo</h3>
+        <p>Một số nội dung quảng cáo có thể xuất hiện ở đây.</p>
+    </div>
+</body>
+</html>
