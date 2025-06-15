@@ -3,20 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>500 Internal Server Error</title>
+  <style>
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: sans-serif;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 72px;
+      color: #d00;
+      margin: 0;
+    }
+    h2 {
+      font-size: 32px;
+      margin: 10px 0 30px 0;
+    }
+    pre {
+      background: none;
+      padding: 0;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    hr {
+      margin-top: 40px;
+    }
+    address {
+      font-family: monospace;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-<pre>
-Internal Server Error
-
+  <h1>500</h1>
+  <h2>Internal Server Error</h2>
+  <pre>
 The server encountered an internal error or misconfiguration and was unable to complete your request.
 
 Please contact the server administrator at webmaster@zynther.io.vn to inform them of the time this error occurred,
 and the actions you performed just before this error.
 
 More information about this error may be available in the server error log.
-
-</pre>
-<hr>
-<address>Apache/2.4.52 (Ubuntu) Server at zynther.io.vn Port 443</address>
+  </pre>
+  <hr>
+  <address>nginx/1.24.0 (Arch Linux) Server at zynther.io.vn Port 443</address>
 </body>
 </html>
