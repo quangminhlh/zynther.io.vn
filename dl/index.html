@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaidoru File List</title>
+  <style>
+    body {
+      background-color: #1c1c1e;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      color: #00ffc3;
+    }
+    .file-list {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+    .file-list a {
+      display: block;
+      padding: 0.5rem;
+      color: #00ffc3;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      word-break: break-word;
+    }
+    .file-list a:hover {
+      background-color: #2e2e2e;
+    }
+  </style>
+</head>
+<body>
+  <h1>📂 Danh sách file Kaidoru</h1>
+  <div class="file-list" id="fileList">Đang tải...</div>
+
+  <script>
+    const repoFolderUrl = "https://zynther.io.vn/dl/kaidoru/";
+
+    fetch(repoFolderUrl)
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const links = Array.from(doc.querySelectorAll("a"));
+        
+        const fileList = document.getElementById("fileList");
+        fileList.innerHTML = "";
+
+        links.forEach(link => {
+          const fileName = link.getAttribute("href");
+          if (
+            fileName &&
+            fileName !== "../" &&
+            !fileName.endsWith("/") &&
+            !fileName.startsWith("?") &&
+            !fileName.includes("<") &&
+            !fileName.includes(">")
+          ) {
+            const safeFile = fileName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const a = document.createElement("a");
+            a.href = repoFolderUrl + encodeURIComponent(fileName);
+            a.textContent = safeFile;
+            a.download = fileName; // Tải trực tiếp
+            fileList.appendChild(a);
+          }
+        });
+      })
+      .catch(err => {
+        document.getElementById("fileList").innerHTML = "Lỗi khi tải danh sách file 😵";
+        console.error("Fetch error:", err);
+      });
+  </script>
+</body>
+</html>
